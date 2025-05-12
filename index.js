@@ -418,11 +418,13 @@ let currentMainMovieName = '';
 const searchInput = document.getElementById('search-input');
 let selectedRating = 0;
 
+
+//slider
 for (let i = 0; i < sliders.length; i++) {
   makeSlider(sliders[i], prev[i], next[i]);
 }
 
-// RATING CLICK->
+// RATING CLICK, hovering
 function generateStars(max = 10) {
   const container = document.getElementById('star-rating');
   container.innerHTML = '';
@@ -449,8 +451,6 @@ function generateStars(max = 10) {
     container.appendChild(star);
   }
 }
-
-
 function updateStarUI(rating) {
   const stars = document.querySelectorAll('.star-rating .star');
   stars.forEach(star => {
@@ -459,7 +459,7 @@ function updateStarUI(rating) {
 }
 
 
-//SEARCH ONLY NAME
+//SEARCH ONLY NAME, click enter
 document.querySelector('.search-icon').addEventListener('click', () => {
   const keyword = searchInput.value.trim();
   if (!keyword) return;
@@ -472,8 +472,6 @@ document.querySelector('.search-icon').addEventListener('click', () => {
     alert('해당 제목의 영화를 찾을 수 없습니다.');
   }
 });
-
-
 searchInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const keyword = e.target.value.trim();
@@ -488,6 +486,7 @@ searchInput.addEventListener('keydown', (e) => {
     }
   }
 });
+
 
 //SLIDER
 function makeSlider(element, prev, next) {
@@ -533,19 +532,20 @@ function filterMoviesBy(type, value) {
 
 
 // RATING TOP N
-function sortMoviesBy(key, count = 20) {
+function sortMoviesBy(key, count = 10) {
   return [...moviename].sort((a, b) =>
     movieList[b][key] - movieList[a][key]
   ).slice(0, count);
 }
 
+//contry
 document.querySelector('.country-filter').addEventListener('change', (e) => {
   const value = e.target.value;
   const container = document.querySelector('.slider[data-type="country"]');
   const filtered = filterMoviesBy('country', value);
   renderMovies(container, filtered);
 });
-
+//genre
 document.querySelector('.genre-filter').addEventListener('change', (e) => {
   const value = e.target.value;
   const container = document.querySelector('.slider[data-type="genre"]');
@@ -553,6 +553,8 @@ document.querySelector('.genre-filter').addEventListener('change', (e) => {
   renderMovies(container, filtered);
 });
 
+
+//>>
 window.addEventListener('DOMContentLoaded', () => {
   displayRandomMovie();
 
@@ -562,7 +564,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  document.querySelector('.description').addEventListener('click', () => {
+document.querySelector('.description').addEventListener('click', () => {
     if (currentMainMovieName) {
       openMovieModal(currentMainMovieName);
     }
@@ -612,12 +614,8 @@ function displayRandomMovie() {
     review.textContent = "청중 평가 없음";
   }
 }
+// main poster popup
 document.querySelector('.img').addEventListener('click', () => {
-  if (currentMainMovieName) {
-    openMovieModal(currentMainMovieName);
-  }
-});
-document.querySelector('.description').addEventListener('click', () => {
   if (currentMainMovieName) {
     openMovieModal(currentMainMovieName);
   }
@@ -633,7 +631,7 @@ function renderMovies(container, movieNames) {
 
   movieNames.forEach((name, index) => {
     const item = isTop
-      ? createMovieItem(name, index + 1)
+      ? createMovieItem(name, index + 1)//rank = index+1
       : createMovieItem(name);  
     container.appendChild(item);
   });
@@ -738,7 +736,7 @@ function openMovieModal(movieName) {
   generateStars();
   modal.style.display = 'flex';
 }
-
+//submit review (push movielist)
 document.getElementById('submit-review').addEventListener('click', () => {
     const reviewText = document.getElementById('user-review').value;
 
@@ -764,11 +762,11 @@ document.getElementById('submit-review').addEventListener('click', () => {
     updateStarUI(0);
   });
 
+
+//CLOSE esc, click
 document.getElementById('modal-close').addEventListener('click', () => {
   document.getElementById('movie-modal').style.display = 'none';
 });
-
-
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.getElementById('movie-modal').style.display = 'none';
