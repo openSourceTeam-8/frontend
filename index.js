@@ -765,4 +765,8 @@ document.getElementById('modal-close').addEventListener('click', () => {
 });
 
 
-
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.getElementById('movie-modal').style.display = 'none';
+  }
+});
