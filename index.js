@@ -438,9 +438,18 @@ function generateStars(max = 10) {
       updateStarUI(i);
     });
 
+    star.addEventListener('mouseover', () => {
+      updateStarUI(i);  
+    });
+
+    star.addEventListener('mouseleave', () => {
+      updateStarUI(selectedRating); 
+    });
+
     container.appendChild(star);
   }
 }
+
 
 function updateStarUI(rating) {
   const stars = document.querySelectorAll('.star-rating .star');
