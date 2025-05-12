@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="kr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+
+  <nav>
+    <div class="top">
+      <div class="logo">
+        <img src="./icon/logo.png" alt="로고" />
+        <h1>SW-TeamProject</h1>
+      </div>
+    </div>
+
+    <div class="top">
+      <div class="search">
+        <div class="search-bar">
+          <img src="./icon/돋보기.jpg" alt="검색" class="search-icon" />
+          <input type="text" id="search-input" placeholder="제목을 검색하세요" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+
+    <div class="img">
+      <img id="main-movie-img" src="test.jpg">
+    </div>
+    <div class="description">
+      <h1 id="main-title">Movie Title</h1>
+      <h3 id="main-cast">출연진</h3>
+      <p id="main-review">리뷰</p>
+    </div>
+
+
+
+  </main>
+  <section>
+    <div class="content-list">
+      <h1>국가
+        <select class="filter-select country-filter">
+          <option value="all">전체</option>
+          <option value="한국">한국</option>
+          <option value="미국">미국</option>
+          <option value="영국">영국</option>
+          <option value="프랑스">프랑스</option>
+          <option value="스페인">스페인</option>
+        </select>
+      </h1>
+      <div class="slider" data-type="country"></div>
+      <div class="prev"> </div>
+      <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+    </div>
+    <div class="content-list">
+      <h1>장르
+        <select class="filter-select genre-filter">
+          <option value="all">전체</option>
+          <option value="범죄">범죄</option>
+          <option value="액션">액션</option>
+          <option value="드라마">드라마</option>
+          <option value="모험">모험</option>
+        </select>
+      </h1>
+      <div class="slider" data-type="genre"></div>
+      <div class="prev"></div>
+      <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+    </div>
+    <div class="content-list">
+
+      <h1>관람평 TOP 10 영화</h1>
+      <div class="slider" data-type="top"></div>
+      <div class="prev"></div>
+      <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+    </div>
+    <div class="content-list">
+
+      <h1>최근 개봉한 영화</h1>
+      <div class="slider" data-type="recent"></div>
+      <div class="prev"></div>
+      <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+    </div>
+
+  </section>
+  <div id="movie-modal" class="modal">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <img id="modal-img" src="" alt="">
+      <div class="modal-details">
+
+
+        <h2 id="modal-title"></h2>
+        <div class="modal-meta">
+          <p id="modal-country"></p>
+          <p id="modal-year"></p>
+          <p id="modal-director"></p>
+          <p id="modal-age"></p>
+          <p id="modal-runtime"></p>
+        </div>
+        <p id="modal-cast"></p>
+        <p id="modal-genre"></p>
+        <p id="modal-description"></p>
+
+
+        <p id="modal-rating" class="modal-rating"></p>
+
+        <div class="modal-review-container">
+
+          <div class="review-scroll-area">
+            <ul id="modal-reviews"></ul>
+          </div>
+
+          <div class="modal-review-form">
+            <label>나의 별점:</label>
+            <div id="star-rating" class="star-rating"></div>
+
+            <label for="user-review">리뷰 작성:</label>
+            <textarea id="user-review" placeholder="이 영화에 대한 후기를 남겨보세요"></textarea>
+            <button id="submit-review">등록</button>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <footer>
+    <p>&copy; 2025 SW-TeamProject : Movie Review Site</p>
+
+    <ul class="footer-links">
+      <li><a href="#">이용약관</a></li>
+      <li><a href="#">고객센터</a></li>
+    </ul>
+
+  </footer>
+
+  <script src="./index.js" defer></script>
+
+</body>
+
+</html>
