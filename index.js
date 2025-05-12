@@ -460,6 +460,20 @@ function updateStarUI(rating) {
 
 
 //SEARCH ONLY NAME
+document.querySelector('.search-icon').addEventListener('click', () => {
+  const keyword = searchInput.value.trim();
+  if (!keyword) return;
+
+  const matchedKey = Object.keys(movieList).find(title => title === keyword);
+
+  if (matchedKey) {
+    openMovieModal(matchedKey);
+  } else {
+    alert('해당 제목의 영화를 찾을 수 없습니다.');
+  }
+});
+
+
 searchInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const keyword = e.target.value.trim();
@@ -609,9 +623,8 @@ document.querySelector('.description').addEventListener('click', () => {
   }
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  displayRandomMovie();
-});
+
+
 
 function renderMovies(container, movieNames) {
   container.innerHTML = '';
@@ -720,10 +733,13 @@ function openMovieModal(movieName) {
       reviewsContainer.appendChild(li);
     });
   }
-
+  review_movie=movieName
 
   generateStars();
-  document.getElementById('submit-review').addEventListener('click', () => {
+  modal.style.display = 'flex';
+}
+
+document.getElementById('submit-review').addEventListener('click', () => {
     const reviewText = document.getElementById('user-review').value;
 
     if (selectedRating === 0 || !reviewText.trim()) {
@@ -737,13 +753,7 @@ function openMovieModal(movieName) {
     document.getElementById('modal-reviews').appendChild(li);
 
 
-
-
-    if (!movie["review of the audience"]) {
-      movie["review of the audience"] = [];
-    }
-
-    movie["review of the audience"].push({
+    movieList[review_movie]["review of the audience"].push({
       rating: selectedRating,
       review: reviewText.trim()
     });
@@ -753,12 +763,6 @@ function openMovieModal(movieName) {
     selectedRating = 0;
     updateStarUI(0);
   });
-
-
-
-
-  modal.style.display = 'flex';
-}
 
 document.getElementById('modal-close').addEventListener('click', () => {
   document.getElementById('movie-modal').style.display = 'none';
