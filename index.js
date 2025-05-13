@@ -772,3 +772,12 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('movie-modal').style.display = 'none';
   }
 });
+//down
+document.getElementById('modal-down').addEventListener('click', () => {
+  const component = document.getElementById('modal-content');
+  component.scrollTo({
+    top: component.scrollHeight,
+    behavior: 'smooth'
+  });
+
+});

@@ -324,10 +324,6 @@ footer .footer-links li {
   background-color: rgba(0,0,0,0.8);
   z-index: 1000;
 }
-.modal-content::-webkit-scrollbar {
-  display: none;
-}
-
 
 .modal-content {
   flex-direction: column;
@@ -340,8 +336,13 @@ footer .footer-links li {
   overflow-y: auto;
   position: relative;
 }
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
 
 .modal-content img {
+  position: relative;
+  top: -3%;
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
@@ -367,6 +368,22 @@ footer .footer-links li {
   border: none;
   color: white;
   cursor: pointer;
+}
+
+.modal-down {
+  position: sticky;
+  top: 98%;
+  left: 100%;
+  z-index: 10;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-down:hover {
+  transform: scale(1.05);
 }
 
 #modal-reviews {
