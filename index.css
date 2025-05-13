@@ -126,15 +126,51 @@ main .description h3 {
 
 /* */
 
-section .content-list {
+.content-list {
   margin-bottom: 3rem;
   position: relative;
 }
-section .content-list h1 {
+.content-list h1 {
   margin-left: 2rem;
   margin-bottom: 1rem;
   margin-top: 0.5rem;
 }
+.content-list .move-left {
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  z-index: 20;
+  font-size: 3rem;
+  background: black ;
+  border: black 0.1rem solid;
+  border-radius: 10%;
+  color: white;
+  cursor: pointer;
+  opacity : 0.3;
+}
+.content-list .move-right {
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  z-index: 20;
+  font-size: 3rem;
+  background: black ;
+  border: black 0.1rem solid;
+  border-radius: 10%;
+  color: white;
+  cursor: pointer;
+  opacity : 0.3;
+}
+
+.move-right:hover {
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out; 
+}
+.move-left:hover {
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out; 
+}
+
 .slider {
   display: flex;
   gap: 0.5rem;
@@ -143,7 +179,6 @@ section .content-list h1 {
   scroll-behavior: smooth;
   padding: 1rem 0;
 }
-
 .slider[data-type="top"] {
   display: flex;               
   gap: 1rem;                  
@@ -154,11 +189,10 @@ section .content-list h1 {
   height: 270px;              
 }
 
-
-section .content-list .slider::-webkit-scrollbar {
+.slider::-webkit-scrollbar {
   display: none;
 }
-section .content-list .slider .item {
+.slider .item {
   position: relative;
   min-width: 250px;
   height: 300px;
@@ -171,14 +205,14 @@ section .content-list .slider .item {
   transition: transform 0.3s ease-in-out;
 }
 
-section .content-list .slider .item img {
+.slider .item img {
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease-in-out;
 }
 
-section .content-list .slider .item::after {
+.slider .item::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -186,15 +220,15 @@ section .content-list .slider .item::after {
   transition: background-color 0.3s ease-in-out;
 }
 
-section .content-list .slider .item:hover::after {
+.slider .item:hover::after {
   background-color: rgba(0, 0, 0, 0.3); 
   }
 
-section .content-list .slider .item:hover img {
+.slider .item:hover img {
   transform: scale(1.0); 
 }
 
-section .content-list .prev {
+.content-list .prev {
   font-size: 3rem;
   position: absolute;
   top: 50%;
@@ -202,7 +236,7 @@ section .content-list .prev {
   transform: translateY(-10px);
   cursor: pointer;
 }
-section .content-list .next {
+.content-list .next {
   font-size: 3rem;
   position: absolute;
   top: 50%;
@@ -342,7 +376,7 @@ footer .footer-links li {
 
 .modal-content img {
   position: relative;
-  top: -3%;
+  top: 0%;
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
@@ -383,7 +417,8 @@ footer .footer-links li {
 }
 
 .modal-down:hover {
-  transform: scale(1.05);
+  transition: all 0.3s ease-in-out; 
+  transform: scale(1.1);
 }
 
 #modal-reviews {
