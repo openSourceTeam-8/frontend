@@ -419,10 +419,6 @@ const searchInput = document.getElementById('search-input');
 let selectedRating = 0;
 
 
-//slider
-for (let i = 0; i < sliders.length; i++) {
-  makeSlider(sliders[i], prev[i], next[i]);
-}
 
 // RATING CLICK, hovering
 function generateStars(max = 10) {
@@ -488,17 +484,7 @@ searchInput.addEventListener('keydown', (e) => {
 });
 
 
-//SLIDER
-function makeSlider(element, prev, next) {
-  next.addEventListener('click', () => {
-    const offsetX = element.offsetWidth;
-    element.scrollBy(offsetX, 0)
-  });
-  prev.addEventListener('click', () => {
-    const offsetX = element.offsetWidth;
-    element.scrollBy(-offsetX, 0)
-  });
-}
+
 //<>><
 function renderMovies(container, movieNames) {
   container.innerHTML = '';
@@ -736,6 +722,7 @@ function openMovieModal(movieName) {
   generateStars();
   modal.style.display = 'flex';
 }
+
 //submit review (push movielist)
 document.getElementById('submit-review').addEventListener('click', () => {
     const reviewText = document.getElementById('user-review').value;
@@ -779,5 +766,5 @@ document.getElementById('modal-down').addEventListener('click', () => {
     top: component.scrollHeight,
     behavior: 'smooth'
   });
-
 });
+
