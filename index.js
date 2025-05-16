@@ -417,6 +417,7 @@ const moviename = Object.keys(movieList);
 let currentMainMovieName = '';
 const searchInput = document.getElementById('search-input');
 let selectedRating = 0;
+const scrollMove = 1000;
 
 
 
@@ -773,8 +774,10 @@ document.querySelectorAll('.move-left').forEach(btn => {
   btn.addEventListener('click', () => {
     const type = btn.getAttribute('data-type');
     const slider = document.querySelector(`.slider[data-type="${type}"]`);
+    let newScrollLeft = slider.scrollLeft - scrollMove;
+    if(newScrollLeft < 0) newScrollLeft = 0;
     slider.scrollTo({
-      left: 0,
+      left: newScrollLeft,
       behavior: 'smooth'
     });
   });
@@ -784,8 +787,11 @@ document.querySelectorAll('.move-right').forEach(btn => {
   btn.addEventListener('click', () => {
     const type = btn.getAttribute('data-type');
     const slider = document.querySelector(`.slider[data-type="${type}"]`);
+    let maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+    let newScrollLeft = slider.scrollLeft + scrollMove;
+    if(newScrollLeft > maxScrollLeft) newScrollLeft = maxScrollLeft;
     slider.scrollTo({
-      left: slider.scrollWidth,
+      left: newScrollLeft,
       behavior: 'smooth'
     });
   });
