@@ -417,7 +417,7 @@ const moviename = Object.keys(movieList);
 let currentMainMovieName = '';
 const searchInput = document.getElementById('search-input');
 let selectedRating = 0;
-const scrollInterval = 1000;
+const scrollInterval = 0.8;
 
 
 
@@ -774,7 +774,7 @@ document.querySelectorAll('.move-left').forEach(btn => {
   btn.addEventListener('click', () => {
     const type = btn.getAttribute('data-type');
     const slider = document.querySelector(`.slider[data-type="${type}"]`);
-    let newScrollLeft = slider.scrollLeft - scrollInterval;
+    let newScrollLeft = slider.scrollLeft - slider.clientWidth * scrollInterval;
     if(newScrollLeft < 0) newScrollLeft = 0;
     slider.scrollTo({
       left: newScrollLeft,
@@ -788,7 +788,7 @@ document.querySelectorAll('.move-right').forEach(btn => {
     const type = btn.getAttribute('data-type');
     const slider = document.querySelector(`.slider[data-type="${type}"]`);
     let maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-    let newScrollLeft = slider.scrollLeft + scrollInterval;
+    let newScrollLeft = slider.scrollLeft + slider.clientWidth * scrollInterval;
     if(newScrollLeft > maxScrollLeft) newScrollLeft = maxScrollLeft;
     slider.scrollTo({
       left: newScrollLeft,
