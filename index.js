@@ -663,7 +663,9 @@ function createMovieItem(name, rank = null) {
     <p><strong>평점:</strong> ${movie.rating || 'N/A'}</p>
     <p><strong>리뷰:</strong><br> 
       <span class = "review-stars"> ${reviewStars} </span><br>
-      <span class = "review-text"> ${reviewText} </span>
+      ${rank !== null
+        ? `<span class="review-rank-text">${reviewText}</span>`
+        : `<span class="review-text">${reviewText}</span>`}
     </p>
   `;
 

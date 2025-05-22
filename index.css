@@ -252,6 +252,13 @@ main .description h3 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.review-rank-text {
+  display: block;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 
 
