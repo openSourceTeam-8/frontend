@@ -417,6 +417,7 @@ const moviename = Object.keys(movieList);
 let currentMainMovieName = '';
 const searchInput = document.getElementById('search-input');
 let selectedRating = 0;
+const scrollInterval = 0.8;
 
 
 
@@ -643,6 +644,16 @@ function createMovieItem(name, rank = null) {
   img.alt = name;
   img.className = 'movie-poster';
 
+  const reviews = movie["review of the audience"];
+  let reviewStars = "";
+  let reviewText = "등록된 리뷰 없음";
+  if(reviews) {
+    const randomIndex = Math.floor(Math.random() * reviews.length);
+    const randomReview = reviews[randomIndex];
+    reviewStars = '★'.repeat(randomReview.rating) + '☆'.repeat(10 - randomReview.rating);
+    reviewText = randomReview.review;
+  }
+
   const overlay = document.createElement('div');
   overlay.className = 'item-overlay';
   overlay.innerHTML = `
@@ -650,6 +661,12 @@ function createMovieItem(name, rank = null) {
     <p><strong>장르:</strong> ${movie.genre?.join(', ') || '정보 없음'}</p>
     <p><strong>출연:</strong> ${movie.cast?.join(', ') || '출연진 없음'}</p>
     <p><strong>평점:</strong> ${movie.rating || 'N/A'}</p>
+    <p><strong>리뷰:</strong><br> 
+      <span class = "review-stars"> ${reviewStars} </span><br>
+      ${rank !== null
+        ? `<span class="review-rank-text">${reviewText}</span>`
+        : `<span class="review-text">${reviewText}</span>`}
+    </p>
   `;
 
   item.appendChild(img);
@@ -773,8 +790,10 @@ document.querySelectorAll('.move-left').forEach(btn => {
   btn.addEventListener('click', () => {
     const type = btn.getAttribute('data-type');
     const slider = document.querySelector(`.slider[data-type="${type}"]`);
+    let newScrollLeft = slider.scrollLeft - slider.clientWidth * scrollInterval;
+    if(newScrollLeft < 0) newScrollLeft = 0;
     slider.scrollTo({
-      left: 0,
+      left: newScrollLeft,
       behavior: 'smooth'
     });
   });
@@ -784,8 +803,11 @@ document.querySelectorAll('.move-right').forEach(btn => {
   btn.addEventListener('click', () => {
     const type = btn.getAttribute('data-type');
     const slider = document.querySelector(`.slider[data-type="${type}"]`);
+    let maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+    let newScrollLeft = slider.scrollLeft + slider.clientWidth * scrollInterval;
+    if(newScrollLeft > maxScrollLeft) newScrollLeft = maxScrollLeft;
     slider.scrollTo({
-      left: slider.scrollWidth,
+      left: newScrollLeft,
       behavior: 'smooth'
     });
   });
